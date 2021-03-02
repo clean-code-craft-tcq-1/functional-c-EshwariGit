@@ -1,50 +1,22 @@
 #include <stdio.h>
 #include <assert.h>
 #include "checker.h"
-bool socFlag = false;
-bool temperatureflag = false;
-bool ChargeRateflag = false;
-bool ChecktemperatureInRange(float temperature) {
-   
-    if(temperature < 0 || temperature > 45)
-    {
-        temperatureflag = true;
-        printf("Temperature out of range!\n");
-    }
-    return temperatureflag;
+
+
+static bms_Status BMS_parameters_s = {
+        false,
+        false,
+        false,
+        false
 }
 
-bool ChecksocInRange(float soc){
-   
-    if(soc < 20 || soc > 80) {
-        {
-            socFlag = true;
-            printf("soc out of range!\n");
-        }
-        return socFlag;
-    }
-}
-
-    bool CheckchargeRateInRange(float chargeRate){
-      
-        if(chargeRate > 0.8)
-        {
-            ChargeRateflag = true;
-            printf("chargerate out of range!\n");
-        }
-        return ChargeRateflag;#include <stdio.h>
-#include <assert.h>
-#include "checker.h"
-bool socFlag = false;
-bool temperatureflag = false;
-bool ChargeRateflag = false;
-bool batteryok = false;
 bool ChecktemperatureInRange(float temperature) {
 
     if(temperature < 0 || temperature > 45)
     {
         temperatureflag = true;
         printf("Temperature out of range!\n");
+        finalcheck(true);
     }
     return temperatureflag;
 }
@@ -55,6 +27,7 @@ bool ChecksocInRange(float soc){
         {
             socFlag = true;
             printf("soc out of range!\n");
+            finalcheck(true);
         }
         return socFlag;
     }
@@ -66,49 +39,30 @@ bool ChecksocInRange(float soc){
         {
             ChargeRateflag = true;
             printf("chargerate out of range!\n");
+            finalcheck(true);
         }
         return ChargeRateflag;
 
     }
-int finalcheck(void){
-    if((temperatureflag || socFlag || ChargeRateflag == true) )
-{
-    batteryok = false;
 
+void finalcheck(bool bms_Status){
 
-}
-else
-{
-    batteryok = true;
-}
+    BMS_parameters_s.bms_Status = true;
 
 }
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-    return(batteryok);
-    }
+    BMS_parameters_s.socFlag = ChecksocInRange(soc);
+    BMS_parameters_s.temperatureflag =ChecktemperatureInRange(temperature);
+    BMS_parameters_s.ChargeRateflag = CheckchargeRateInRange(chargeRate);
 
-    int main() {
-        assert(batteryIsOk(25, 70, 0.7));
-        assert(!batteryIsOk(50, 85, 0));
-    }
-
-
-    }
-int finalcheck(void){
-    if((temperatureflag || socFlag || ChargeRateflag == true) )
-{
-    return 0;
-
-}
-else
-{
-    return 1;
-}
-    
-}
-int batteryIsOk(float temperature, float soc, float chargeRate) {
-
-finalcheck();
+    if( true == BMS_parameters_s.bms_Status)
+     {
+         return 0;
+     }
+     else
+     {
+         return 1;
+     }
     }
 
     int main() {

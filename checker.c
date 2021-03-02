@@ -2,73 +2,71 @@
 #include <assert.h>
 #include "checker.h"
 
-
-static BMS_parameters_s BMS_parameter = {
-        false,
-        false,
-        false,
-        false
+BatteryStatus TemparatureValue = {
+        0.0,
+        45.0,
+        "Temparature"
 };
 
-bool ChecktemperatureInRange(float temperature) {
+BatteryStatus SocValue = {
+        20.0,
+        80.0,
+        "StateOfCharge"
+};
 
-bool tempflag = false;
-    if(temperature < 0 || temperature > 45)
+BatteryStatus ChargeRateValue = {
+        0.0,
+        0.8,
+        "ChargeRate"
+};
+
+int ChecktemperatureInRange(float temperature) {
+
+    int istemperatureinrange = BATTERY_CONDITION_GOOD;
+    if (Temperature<TemparatureValue.BatteryL|| Temperature>TemparatureValue.BatteryU)
     {
-        tempflag = true;
-        printf("Temperature out of range!\n");
-        finalcheck(true);
+        isTemparaturestable = BATTERY_CONDITION_BAD;
     }
-    return tempflag;
+    PrintBatterycondition(TemparatureValue,istemperatureinrange );
+    return istemperatureinrange;
 }
 
-bool ChecksocInRange(float soc){
-
-bool socflag1 = false;
-    if(soc < 20 || soc > 80) {
-        {
-            socflag1 = true;
-            printf("soc out of range!\n");
-            finalcheck(true);
-        }
-        return socflag1;
+int ChecksocInRange(float soc){
+    int issocinrange = BATTERY_CONDITION_GOOD;
+    if(SOC<SocValue.BatteryL || SOC>SocValue.BatteryU )
+    {
+        issocinrange = BATTERY_CONDITION_BAD;
     }
+    PrintBatterycondition(SocValue,issocinrange);
+    return issocinrange;
 }
 
-    bool CheckchargeRateInRange(float chargeRate){
-bool ChargeRateflag1 = false;
 
-        if(chargeRate > 0.8)
-        {
-            ChargeRateflag1 = true;
-            printf("chargerate out of range!\n");
-            finalcheck(true);
-        }
-        return ChargeRateflag1;
-
+int CheckchargeRateInRange(float chargeRate){
+    int ischargerateinrange = BATTERY_CONDITION_GOOD;
+    if(chargeRate<ChargeRateValue.BatteryL || chargeRate>ChargeRateValue.BatteryU )
+    {
+        ischargerateinrange = BATTERY_CONDITION_BAD;
     }
 
-void finalcheck(bool bms_Status1){
-
-    BMS_parameter.bms_Status = true;
-
+    PrintBatterycondition(ChargeRateValue,ischargerateinrange );
+    return ischargerateinrange;
 }
+
+void PrintBatterycondition(BatteryStatus BatteryData_Type, int BatteryMessageI)
+{
+    printf("%s %s \n", BatteryData_Type.BatteryD, BatteryMessage[BatteryMessageI]);
+}
+
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-    BMS_parameter.socFlag = ChecksocInRange(soc);
-    BMS_parameter.temperatureflag =ChecktemperatureInRange(temperature);
-    BMS_parameter.ChargeRateflag = CheckchargeRateInRange(chargeRate);
+    int istemperatureinrange, issocinrange, ischargerateinrange;
+    istemparatureinrange = ChecktemperatureInRange(temperature);
+    issocinrange = ChecksocInRange(soc);
+    ischargerateinrange = CheckchargeRateInRange(chargeRate);
+    return ( istemparatureinrange && issocinrange && ischargerateinrange);
+}
 
-    if( true == BMS_parameter.bms_Status)
-     {
-         return 0;
-     }
-     else
-     {
-         return 1;
-     }
-    }
-
-    int main() {
-        assert(batteryIsOk(25, 70, 0.7));
-        assert(!batteryIsOk(50, 85, 0));
-    }
+int main() {
+    assert(batteryIsOk(25, 70, 0.7));
+    assert(!batteryIsOk(50, 85, 0));
+}

@@ -63,7 +63,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
     istemperatureinrange = ChecktemperatureInRange(temperature);
     issocinrange = ChecksocInRange(soc);
     ischargerateinrange = CheckchargeRateInRange(chargeRate);
-    return ( istemparatureinrange && issocinrange && ischargerateinrange);
+    return ( istemperatureinrange && issocinrange && ischargerateinrange);
 }
 
 int main() {

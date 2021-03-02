@@ -1,18 +1,22 @@
 #include <stdio.h>
 
-typedef enum {  false,
-                true
-}bool;
-typedef struct {
-    bool socFlag ;
-    bool temperatureflag ;
-    bool ChargeRateflag ;
-    bool bms_Status ;
-} BMS_req;
+typedef struct{
+    float BatteryL;
+    float BatteryU;
+    const char* BatteryD;
+}BatteryStatus;
 
-bool ChecktemperatureInRange(float temperature);
-bool ChecksocInRange(float soc);
-bool CheckchargeRateInRange(float chargeRate);
-void finalcheck(bool bms_Status1);
+const char *BatteryMessage[] =
+{
+    "Not as Expected! ALERT!!!!!!",
+    "As Expected"
+};
+
+int ChecktemperatureInRange(float temperature);
+int ChecksocInRange(float soc);
+int CheckchargeRateInRange(float chargeRate);
 int batteryIsOk(float temperature, float soc, float chargeRate);
+void PrintBatterycondition(BatteryStatus BatteryData_Type, int BatteryMessageI);
 
+#define BATTERY_CONDITION_GOOD 1
+#define BATTERY_CONDITION_BAD 0

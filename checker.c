@@ -32,9 +32,8 @@ bool ChecksocInRange{
         return ChargeRateflag;
 
     }
-
-    int batteryIsOk(float temperature, float soc, float chargeRate) {
-if((temperatureflag || socFlag || ChargeRateflag == true) )
+bool finalcheck{
+    if((temperatureflag || socFlag || ChargeRateflag == true) )
 {
     return 0;
 
@@ -43,7 +42,11 @@ else
 {
     return 1;
 }
+    
+}
+int batteryIsOk(float temperature, float soc, float chargeRate) {
 
+finalcheck();
     }
 
     int main() {

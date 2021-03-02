@@ -3,7 +3,7 @@
 #include "checker.h"
 
 
-static bms_StatusParam BMS_parameter = {
+static BMS_parameters_s BMS_parameter = {
         false,
         false,
         false,

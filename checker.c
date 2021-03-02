@@ -3,7 +3,7 @@
 #include "checker.h"
 
 
-static bms_Status BMS_parameters_s = {
+static bms_StatusParam BMS_parameters_s = {
         false,
         false,
         false,
@@ -12,40 +12,43 @@ static bms_Status BMS_parameters_s = {
 
 bool ChecktemperatureInRange(float temperature) {
 
+bool tempflag = false;
     if(temperature < 0 || temperature > 45)
     {
-        temperatureflag = true;
+        tempflag = true;
         printf("Temperature out of range!\n");
         finalcheck(true);
     }
-    return temperatureflag;
+    return tempflag;
 }
 
 bool ChecksocInRange(float soc){
 
+bool socflag1 = false;
     if(soc < 20 || soc > 80) {
         {
-            socFlag = true;
+            socFlag1 = true;
             printf("soc out of range!\n");
             finalcheck(true);
         }
-        return socFlag;
+        return socFlag1;
     }
 }
 
     bool CheckchargeRateInRange(float chargeRate){
+bool ChargeRateflag1 = false;
 
         if(chargeRate > 0.8)
         {
-            ChargeRateflag = true;
+            ChargeRateflag1 = true;
             printf("chargerate out of range!\n");
             finalcheck(true);
         }
-        return ChargeRateflag;
+        return ChargeRateflag1;
 
     }
 
-void finalcheck(bool bms_Status){
+void finalcheck(bool bms_Status1){
 
     BMS_parameters_s.bms_Status = true;
 

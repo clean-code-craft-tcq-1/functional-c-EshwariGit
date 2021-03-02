@@ -2,23 +2,23 @@
 #include <assert.h>
 #include "checker.h"
 
+
 BatteryStatus TemparatureValue = {
         0.0,
         45.0,
         "Temparature"
 };
-
 BatteryStatus SocValue = {
         20.0,
         80.0,
         "StateOfCharge"
 };
-
 BatteryStatus ChargeRateValue = {
         0.0,
         0.8,
         "ChargeRate"
 };
+
 
 int ChecktemperatureInRange(float temperature) {
 
@@ -30,6 +30,7 @@ int ChecktemperatureInRange(float temperature) {
     PrintBatterycondition(TemparatureValue,istemperatureinrange );
     return istemperatureinrange;
 }
+
 
 int ChecksocInRange(float soc){
     int issocinrange = BATTERY_CONDITION_GOOD;

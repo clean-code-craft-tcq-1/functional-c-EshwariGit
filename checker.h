@@ -8,11 +8,11 @@ typedef struct {
     bool temperatureflag ;
     bool ChargeRateflag ;
     bool bms_Status ;
-} BMS_parameters_s;
+} BMS_req;
 
 bool ChecktemperatureInRange(float temperature);
 bool ChecksocInRange(float soc);
 bool CheckchargeRateInRange(float chargeRate);
-void finalcheck(bool bms_Status);
+void finalcheck(bool bms_Status1);
 int batteryIsOk(float temperature, float soc, float chargeRate);
 

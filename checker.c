@@ -31,7 +31,7 @@ bool socflag1 = false;
             printf("soc out of range!\n");
             finalcheck(true);
         }
-        return socFlag1;
+        return socflag1;
     }
 }
 

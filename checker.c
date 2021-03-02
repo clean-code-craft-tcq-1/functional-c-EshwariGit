@@ -23,6 +23,7 @@ bool ChecksocInRange(float soc){
         }
         return socFlag;
     }
+}
 
     bool CheckchargeRateInRange(float chargeRate){
       

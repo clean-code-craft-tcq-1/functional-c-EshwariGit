@@ -8,7 +8,7 @@ static bms_StatusParam BMS_parameters_s = {
         false,
         false,
         false
-}
+};
 
 bool ChecktemperatureInRange(float temperature) {
 

@@ -3,7 +3,7 @@
 #include "checker.h"
 
 
-static bms_StatusParam BMS_parameters_s = {
+static bms_StatusParam BMS_parameter = {
         false,
         false,
         false,
@@ -50,15 +50,15 @@ bool ChargeRateflag1 = false;
 
 void finalcheck(bool bms_Status1){
 
-    BMS_parameters_s.bms_Status = true;
+    bms_StatusParam.bms_Status = true;
 
 }
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-    BMS_parameters_s.socFlag = ChecksocInRange(soc);
-    BMS_parameters_s.temperatureflag =ChecktemperatureInRange(temperature);
-    BMS_parameters_s.ChargeRateflag = CheckchargeRateInRange(chargeRate);
+    bms_StatusParam.socFlag = ChecksocInRange(soc);
+    bms_StatusParam.temperatureflag =ChecktemperatureInRange(temperature);
+    bms_StatusParam.ChargeRateflag = CheckchargeRateInRange(chargeRate);
 
-    if( true == BMS_parameters_s.bms_Status)
+    if( true == bms_StatusParam.bms_Status)
      {
          return 0;
      }

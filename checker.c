@@ -27,7 +27,7 @@ bool ChecksocInRange(float soc){
 bool socflag1 = false;
     if(soc < 20 || soc > 80) {
         {
-            socFlag1 = true;
+            socflag1 = true;
             printf("soc out of range!\n");
             finalcheck(true);
         }

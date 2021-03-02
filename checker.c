@@ -2,7 +2,7 @@
 #include <assert.h>
 #include "checker.h"
 
-bool ChecktemperatureInRange {
+bool ChecktemperatureInRange(float temperature) {
     bool temperatureflag = false;
     if(temperature < 0 || temperature > 45)
     {
@@ -12,7 +12,7 @@ bool ChecktemperatureInRange {
     return temperatureflag;
 }
 
-bool ChecksocInRange{
+bool ChecksocInRange(float soc){
     bool socFlag = false;
     if(soc < 20 || soc > 80) {
         {
@@ -22,7 +22,7 @@ bool ChecksocInRange{
         return socFlag;
     }
 
-    bool CheckchargeRateInRange{
+    bool CheckchargeRateInRange(float chargeRate){
         bool ChargeRateflag = false;
         if(chargeRate > 0.8)
         {

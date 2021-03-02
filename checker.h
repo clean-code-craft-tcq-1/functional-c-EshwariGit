@@ -6,7 +6,7 @@ typedef enum {  false,
 
 bool ChecktemperatureInRange(float temperature);
 bool ChecksocInRange(float soc);
-bool finalcheck();
+int finalcheck();
 bool CheckchargeRateInRange(float chargeRate);
 int batteryIsOk(float temperature, float soc, float chargeRate);
 

@@ -23,9 +23,9 @@ BatteryStatus ChargeRateValue = {
 int ChecktemperatureInRange(float temperature) {
 
     int istemperatureinrange = BATTERY_CONDITION_GOOD;
-    if (Temperature<TemparatureValue.BatteryL|| Temperature>TemparatureValue.BatteryU)
+    if (temperature<TemparatureValue.BatteryL|| temperature>TemparatureValue.BatteryU)
     {
-        isTemparaturestable = BATTERY_CONDITION_BAD;
+        istemperatureinrange = BATTERY_CONDITION_BAD;
     }
     PrintBatterycondition(TemparatureValue,istemperatureinrange );
     return istemperatureinrange;
@@ -33,7 +33,7 @@ int ChecktemperatureInRange(float temperature) {
 
 int ChecksocInRange(float soc){
     int issocinrange = BATTERY_CONDITION_GOOD;
-    if(SOC<SocValue.BatteryL || SOC>SocValue.BatteryU )
+    if(soc<SocValue.BatteryL || soc>SocValue.BatteryU )
     {
         issocinrange = BATTERY_CONDITION_BAD;
     }
@@ -60,7 +60,7 @@ void PrintBatterycondition(BatteryStatus BatteryData_Type, int BatteryMessageI)
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
     int istemperatureinrange, issocinrange, ischargerateinrange;
-    istemparatureinrange = ChecktemperatureInRange(temperature);
+    istemperatureinrange = ChecktemperatureInRange(temperature);
     issocinrange = ChecksocInRange(soc);
     ischargerateinrange = CheckchargeRateInRange(chargeRate);
     return ( istemparatureinrange && issocinrange && ischargerateinrange);

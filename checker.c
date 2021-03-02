@@ -34,7 +34,7 @@ bool ChecksocInRange(float soc){
         return ChargeRateflag;
 
     }
-int finalcheck{
+int finalcheck(void){
     if((temperatureflag || socFlag || ChargeRateflag == true) )
 {
     return 0;

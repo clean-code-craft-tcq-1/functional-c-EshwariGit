@@ -50,15 +50,15 @@ bool ChargeRateflag1 = false;
 
 void finalcheck(bool bms_Status1){
 
-    bms_StatusParam.bms_Status = true;
+    BMS_parameter.bms_Status = true;
 
 }
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-    bms_StatusParam.socFlag = ChecksocInRange(soc);
-    bms_StatusParam.temperatureflag =ChecktemperatureInRange(temperature);
-    bms_StatusParam.ChargeRateflag = CheckchargeRateInRange(chargeRate);
+    BMS_parameter.socFlag = ChecksocInRange(soc);
+    BMS_parameter.temperatureflag =ChecktemperatureInRange(temperature);
+    BMS_parameter.ChargeRateflag = CheckchargeRateInRange(chargeRate);
 
-    if( true == bms_StatusParam.bms_Status)
+    if( true == BMS_parameter.bms_Status)
      {
          return 0;
      }

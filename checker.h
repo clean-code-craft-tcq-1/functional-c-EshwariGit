@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 typedef struct{
-    float BatteryL;
-    float BatteryU;
-    const char* BatteryD;
-}BatteryStatus;
+    float BatteryL;    //Battery status Low.
+    float BatteryU;    //Battery status High
+    const char* BatteryD;  //Message Display paramter
+}IsBatteryStatusInRange;
 
 const char *BatteryMessage[] =
 {

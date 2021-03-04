@@ -3,17 +3,17 @@
 #include "checker.h"
 
 
-BatteryStatus TemparatureValue = {
+IsBatteryStatusInRange TemparatureValue = {
         0.0,
         45.0,
         "Temparature"
 };
-BatteryStatus SocValue = {
+IsBatteryStatusInRange SocValue = {
         20.0,
         80.0,
         "StateOfCharge"
 };
-BatteryStatus ChargeRateValue = {
+IsBatteryStatusInRange ChargeRateValue = {
         0.0,
         0.8,
         "ChargeRate"
@@ -54,7 +54,7 @@ int CheckchargeRateInRange(float chargeRate){
     return ischargerateinrange;
 }
 
-void PrintBatterycondition(BatteryStatus BatteryData_Type, int BatteryMessageI)
+void PrintBatterycondition(IsBatteryStatusInRange BatteryData_Type, int BatteryMessageI)
 {
     printf("%s %s \n", BatteryData_Type.BatteryD, BatteryMessage[BatteryMessageI]);
 }

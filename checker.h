@@ -16,7 +16,7 @@ int ChecktemperatureInRange(float temperature);
 int ChecksocInRange(float soc);
 int CheckchargeRateInRange(float chargeRate);
 int batteryIsOk(float temperature, float soc, float chargeRate);
-void PrintBatterycondition(BatteryStatus BatteryData_Type, int BatteryMessageI);
+void PrintBatterycondition(IsBatteryStatusInRange BatteryData_Type, int BatteryMessageI);
 
 #define BATTERY_CONDITION_GOOD 1
 #define BATTERY_CONDITION_BAD 0

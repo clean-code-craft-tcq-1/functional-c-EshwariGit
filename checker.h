@@ -12,9 +12,8 @@ const char *BatteryMessage[] =
     "As Expected"
 };
 
-int ChecktemperatureInRange(float temperature);
-int ChecksocInRange(float soc);
-int CheckchargeRateInRange(float chargeRate);
+int ChecktemperatureInRange(float temperature, float soc, float chargeRate);
+
 int batteryIsOk(float temperature, float soc, float chargeRate);
 void PrintBatterycondition(IsBatteryStatusInRange BatteryData_Type, int BatteryMessageI);
 

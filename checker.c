@@ -20,38 +20,31 @@ IsBatteryStatusInRange ChargeRateValue = {
 };
 
 
-int ChecktemperatureInRange(float temperature) {
+int ChecktemperatureInRange(float temperature, float soc, float chargeRate) {
 
     int istemperatureinrange = BATTERY_CONDITION_GOOD;
+    int issocinrange = BATTERY_CONDITION_GOOD;
+    int ischargerateinrange = BATTERY_CONDITION_GOOD;
+        
     if (temperature<TemparatureValue.BatteryL|| temperature>TemparatureValue.BatteryU)
     {
         istemperatureinrange = BATTERY_CONDITION_BAD;
     }
-    PrintBatterycondition(TemparatureValue,istemperatureinrange );
-    return istemperatureinrange;
-}
-
-
-int ChecksocInRange(float soc){
-    int issocinrange = BATTERY_CONDITION_GOOD;
+      
     if(soc<SocValue.BatteryL || soc>SocValue.BatteryU )
     {
         issocinrange = BATTERY_CONDITION_BAD;
     }
-    PrintBatterycondition(SocValue,issocinrange);
-    return issocinrange;
-}
-
-
-int CheckchargeRateInRange(float chargeRate){
-    int ischargerateinrange = BATTERY_CONDITION_GOOD;
+        
     if(chargeRate<ChargeRateValue.BatteryL || chargeRate>ChargeRateValue.BatteryU )
     {
         ischargerateinrange = BATTERY_CONDITION_BAD;
     }
-
+    PrintBatterycondition(TemparatureValue,istemperatureinrange );
+    PrintBatterycondition(SocValue,issocinrange);
     PrintBatterycondition(ChargeRateValue,ischargerateinrange );
-    return ischargerateinrange;
+   return (istemperatureinrange && issocinrange && ischargerateinrange);
+        
 }
 
 void PrintBatterycondition(IsBatteryStatusInRange BatteryData_Type, int BatteryMessageI)
@@ -62,8 +55,8 @@ void PrintBatterycondition(IsBatteryStatusInRange BatteryData_Type, int BatteryM
 int batteryIsOk(float temperature, float soc, float chargeRate) {
     int istemperatureinrange, issocinrange, ischargerateinrange;
     istemperatureinrange = ChecktemperatureInRange(temperature);
-    issocinrange = ChecksocInRange(soc);
-    ischargerateinrange = CheckchargeRateInRange(chargeRate);
+    issocinrange = ChecktemperatureInRange(soc);
+    ischargerateinrange = ChecktemperatureInRange(chargeRate);
     return ( istemperatureinrange && issocinrange && ischargerateinrange);
 }
 
